@@ -154,5 +154,7 @@ fn can_transfer(){
         assert_eq!(KittiesModule::kitties(10, 0), Some(kitty.clone()));
         assert_ok!(KittiesModule::transfer(Origin::signed(10), 25, 0 ));
         assert_eq!(KittiesModule::kitties(25, 0), Some(kitty.clone()));
+        assert_ne!(KittiesModule::kitties(100, 0), Some(kitty.clone())); // Making sure the kitty is no longer with account 100
+        assert_eq!(last_event(), Event::kitties(RawEvent::KittyTransferred(10, 25, 0)));
     });
 }
