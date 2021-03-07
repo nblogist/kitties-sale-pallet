@@ -145,3 +145,14 @@ fn can_breed() {
 }
 
 // TODO: add new test cases for `fn transfer`. Make sure you have covered edge cases
+
+#[test]
+fn can_transfer(){
+    new_test_ext().execute_with(||{
+        assert_ok!(KittiesModule::create(Origin::signed(10)));
+        let kitty = Kitty([61, 197, 5, 233, 97, 157, 119, 228, 16, 241, 238, 219, 38, 213, 246, 235]);
+        assert_eq!(KittiesModule::kitties(10, 0), Some(kitty.clone()));
+        assert_ok!(KittiesModule::transfer(Origin::signed(10), 25, 0 ));
+        assert_eq!(KittiesModule::kitties(25, 0), Some(kitty.clone()));
+    });
+}
