@@ -1,0 +1,25 @@
+# Kitties Pallet Design - Assignment 5 (Exchange Feature)
+
+This is a design document submitted for substrate developer academy assignment 5 (Kitties Pallet)
+
+## Storage (decl_storage!)
+
+    * kitties: double_map (kitty_dna: u128, owner: AccountId )  => kitty_id:u32
+    * prices: map kitty_dna: u128   => kitty_price:u32
+
+## Events (decl_event!)
+
+    * KittyTransferred(AccountId, AccountId, u128),
+    * KittyPurchased(AccountId, AccountId, u128),
+<!-- [from, to , price] -->
+
+## Errors (decl_error!)
+
+    * NotTheOwnerOfKitty,
+    * LessPayment,
+    * MorePayment,
+
+## Calls (decl_module!)
+
+    * fn purchase_kitty(origin, kitty_id: u32, tokens: u128)
+<!-- Question: what is equalent of payable in substrate? and what token can we accept? -->
